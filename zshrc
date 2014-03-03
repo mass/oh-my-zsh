@@ -2,7 +2,7 @@
 [ -z "$PS1" ] && return
 
 # Oh my zsh configuration
-ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.dotfiles/zsh
 ZSH_THEME="mass"
 plugins=(git git-prompt npm mvn)
 source $ZSH/oh-my-zsh.sh
