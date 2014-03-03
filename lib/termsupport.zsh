@@ -14,8 +14,8 @@ function title {
   fi
 }
 
-ZSH_THEME_TERM_TAB_TITLE_IDLE="mass@firestorm" #15 char left truncated PWD
-ZSH_THEME_TERM_TITLE_IDLE="mass@firestorm"
+ZSH_THEME_TERM_TAB_TITLE_IDLE="Terminal - ZSH" #15 char left truncated PWD
+ZSH_THEME_TERM_TITLE_IDLE="Terminal - ZSH"
 
 #Appears when you have the prompt
 function omz_termsupport_precmd {
