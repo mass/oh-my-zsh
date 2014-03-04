@@ -1,9 +1,24 @@
-PS1='%{$fg_bold[yellow]%}|%{$fg_bold[red]%}%n%{$fg_bold[yellow]%}@%{$fg_bold[red]%}%m%{$fg_bold[yellow]%}| |%{$fg[green]%}%~%{$fg_bold[yellow]%}|%{$reset_color%}$(git_prompt_string)%{$fg_bold[yellow]%} |»%{$reset_color%} '
-RPS1='%{$fg_bold[yellow]%}|%{$fg_bold[red]%}%T - %D%{$fg_bold[yellow]%}|%{$reset_color%}'
+# Left Side Prompt
+PS1='%B%F{yellow}[\
+%b%U%F{red}%n%u\
+%B%F{yellow}@\
+%b%U%F{red}%m%u\
+%B%F{yellow}] [\
+%b%F{green}%~\
+%B%F{yellow}]\
+%F{reset}$(git_prompt_string)\
+%B%F{yellow} |»\
+%b%F{reset} '
+
+# Right Side Prompt
+RPS1='%B%F{yellow}[\
+%b%F{red}%*::%D\
+%B%F{yellow}]\
+%b%F{reset}'
 
 GIT_PROMPT_SYMBOL=" "
-GIT_PROMPT_PREFIX="%{$fg_bold[yellow]%}|%{$reset_color%}"
-GIT_PROMPT_SUFFIX="%{$fg_bold[yellow]%}|%{$reset_color%}"
+GIT_PROMPT_PREFIX="%{$fg_bold[yellow]%}[%{$reset_color%}"
+GIT_PROMPT_SUFFIX="%{$fg_bold[yellow]%}]%{$reset_color%}"
 GIT_PROMPT_AHEAD="%{$fg[red]%}>%{$reset_color%}"
 GIT_PROMPT_BEHIND="%{$fg[cyan]%}<%{$reset_color%}"
 GIT_PROMPT_MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
