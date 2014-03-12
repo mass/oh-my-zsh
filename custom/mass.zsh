@@ -6,6 +6,8 @@ alias sensors="watch -d -n 1 sensors"
 alias pegasus-db="mysql -u root -ppass pegasus"
 alias monad="../monad/monad --provided"
 alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
+alias spim="QtSpim"
+alias spimbot="QtSpimbot"
 
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"
@@ -36,7 +38,7 @@ backuphome() {
 
 # Clean and refresh the local pegasus database
 refresh-pegasus-db() {
-  OLD_DIR=$(pwd)
+  local OLD_DIR=$(pwd)
   cd ~/development/web/pegasus/tools
   cat create_tables.sql create_testdata.sql | mysql -u root -ppass
   cd $OLD_DIR

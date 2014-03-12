@@ -16,6 +16,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
 # Vim mode
 bindkey -v
 
+# Recursive search
+bindkey '^R' history-incremental-search-backward
+
 # Miscellaneous aliases
 alias more="less"
 alias dirstat="du -d 1 -h | sort -hr | head -n 11"
