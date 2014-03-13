@@ -12,6 +12,8 @@ alias spimbot="QtSpimbot"
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"
 alias mass-web="cd /home/mass/development/web/mass-web"
+alias 398="cd /home/mass/development/db/uiuc/398/amass2"
+alias 225="cd /home/mass/development/db/uiuc/225"
 
 # Development Settings
 export USE_CCACHE=1
