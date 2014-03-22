@@ -9,6 +9,7 @@ alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
 alias spim="QtSpim"
 alias spimbot="QtSpimbot"
 alias svnup="svn up"
+alias diff="diff -s"
 
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"
@@ -30,7 +31,7 @@ backuphome() {
   cd /home/mass
   mkdir $(date +%F)
   cd ./$(date +%F)
-  cp -rv ~/development ~/.bfgminer ~/.ssh ~/.bashrc ~/.boto ~/.git-completion.bash ~/.git-prompt.sh ~/.nvidia-settings-rc ~/.vimrc ~/.gitconfig ~/.profile ~/.vim /etc/udev/51-android.rules ./
+  cp -rv ~/.dotfiles ~/development ~/.ssh ~/.boto ~/.nvidia-settings-rc /etc/udev/rules.d/51-android.rules ./
   cd ../
   tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$(date +%F)/
   rm -rf ./$(date +%F)

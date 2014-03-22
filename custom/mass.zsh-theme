@@ -1,8 +1,8 @@
 # Left Side Prompt
 PS1='%B%F{yellow}[\
-%b%U%F{red}%n%u\
+%b%F{red}%n\
 %B%F{yellow}@\
-%b%U%F{red}%m%u\
+%b%F{red}%m\
 %B%F{yellow}] [\
 %b%F{green}%~\
 %B%F{yellow}]\
