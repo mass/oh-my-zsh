@@ -43,7 +43,12 @@ alias tigs="tig status"
 alias amend="git commit --amend"
 alias commit="git commit"
 alias pull="git pull"
+alias g="git"
+alias ga="git add --all"
 alias gc="git commit --verbose"
+alias gco="git checkout"
+alias gst="git status -sb"
+alias gd="git diff"
 alias gwc="git whatchanged -p --abbrev-commit --pretty=medium"
 
 # Miscellaneous aliases
