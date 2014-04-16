@@ -18,10 +18,7 @@ alias 398="cd /home/mass/development/db/uiuc/398/amass2"
 alias 225="cd /home/mass/development/db/uiuc/225"
 
 # Development Settings
-export USE_CCACHE=1
-export CCACHE_DIR=~/romdev/ccache
 export PATH=${PATH}:~/development/android-sdk-linux/tools:~/development/android-sdk-linux/platform-tools
-export PATH=${PATH}:~/development/web/google_appengine
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
 # Backs up all the important files in my home directory
@@ -31,7 +28,7 @@ backuphome() {
   cd /home/mass
   mkdir $(date +%F)
   cd ./$(date +%F)
-  cp -rv ~/.dotfiles ~/development ~/.ssh ~/.boto ~/.nvidia-settings-rc /etc/udev/rules.d/51-android.rules ./
+  cp -rv ~/development ~/.ssh ~/.boto ~/.nvidia-settings-rc /etc/udev/rules.d/51-android.rules ./
   cd ../
   tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$(date +%F)/
   rm -rf ./$(date +%F)

@@ -1,7 +1,11 @@
 # Shell options
-setopt autocd
-setopt extendedglob
-unsetopt sharehistory
+setopt AUTO_CD
+setopt CORRECT
+setopt EXTENDED_GLOB
+setopt SHORT_LOOPS
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
 
 # Load more commands
 autoload -U zmv
@@ -13,20 +17,52 @@ compinit -C
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
   'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Vim mode
-bindkey -v
-
-# Recursive search
+# Key bindings
 bindkey '^R' history-incremental-search-backward
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^K' kill-line
+
+# ls aliases
+alias sl="ls"
+alias la="ls -A"
+alias ll="ls -l"
+alias lla="ll -A"
+alias l1="ls -1"
+alias l1a="l1 -A"
+alias l="ls"
+
+# Configuration aliases
+alias zshrc="vim ~/.zshrc"
+alias bashrc="vim ~/.bashrc"
+alias reload="source ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+
+# Git aliases
+alias tigs="tig status"
+alias amend="git commit --amend"
+alias commit="git commit"
+alias pull="git pull"
+alias gc="git commit --verbose"
+alias gwc="git whatchanged -p --abbrev-commit --pretty=medium"
 
 # Miscellaneous aliases
 alias more="less"
 alias dirstat="du -d 1 -h | sort -hr | head -n 11"
 alias ip="ifconfig | grep 'inet '"
 alias copy="xclip -selection clipboard"
+alias v="vim"
+alias m="man"
 
+# Linux specific
 if [[ $(uname) = 'Linux' ]]; then
   alias open="xdg-open"
+fi
+
+# OSX specific
+if [[ $(uname) = 'Darwin' ]]; then
+  alias top="top -o cpu"
+  alias sort="gsort"
 fi
 
 # Encryption functions
@@ -37,30 +73,8 @@ ssl_decrypt() {
   openssl aes-256-cbc -a -d -in $1 -out $2
 }
 
-if [[ `uname` = 'Darwin' ]]; then
-  alias top="top -o cpu"
-fi
-
 # Fun bit of information
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 30 | sort -rn"
-
-# ls aliases
-alias sl="ls"
-alias la="ls -A"
-alias ll="ls -l"
-alias l1="ls -1"
-alias l="ls"
-
-# Configuration aliases
-alias zshrc="vim ~/.zshrc"
-alias reload="source ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-
-# Git aliases
-alias tigs="tig status"
-alias amend="git commit --amend"
-alias commit="git commit"
-alias pull="git pull"
 
 # Useful environment variables
 export EDITOR=vim
@@ -151,15 +165,6 @@ c_purple=$(tput setaf 5)
 c_cyan=$(tput setaf 6)
 c_white=$(tput setaf 7)
 c_reset=$(tput sgr0)
-
-# Colorize less output
-export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
-export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
-export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
-export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
-export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
-export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
 # Make .zsh_history store more and not store duplicates
 export HISTCONTROL=ignoreboth
