@@ -1,24 +1,34 @@
-# Custom ZSH Configuration by @mass
+############################
+# Custom ZSH Configuration #
+#                          #
+# Author: Andrew Mass      #
+# Date:   2014-04-24       #
+############################
 
 # General Aliases
+alias diff="diff -s"
 alias cpuinfo="sudo i7z_64bit"
 alias sensors="watch -d -n 1 sensors"
-alias pegasus-db="mysql -u root -ppass pegasus"
-alias monad="../monad/monad --provided"
-alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
-alias spim="QtSpim"
-alias spimbot="QtSpimbot"
 alias svnup="svn up"
-alias diff="diff -s"
+alias svndf="svn diff | less"
 
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"
 alias mass-web="cd /home/mass/development/web/mass-web"
-alias 398="cd /home/mass/development/db/uiuc/398/amass2"
+
+# School Aliases
+alias spim="QtSpim"
+alias spimbot="QtSpimbot"
+alias monad="../monad/monad --provided"
 alias 225="cd /home/mass/development/db/uiuc/225"
+alias 398="cd /home/mass/development/db/uiuc/398/amass2"
+
+# Pegasus Aliases
+alias pegasus-db="mysql -u root -ppass pegasus"
+alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
 
 # Development Settings
-export PATH=${PATH}:~/development/android-sdk-linux/tools:~/development/android-sdk-linux/platform-tools
+export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
 # Backs up all the important files in my home directory
