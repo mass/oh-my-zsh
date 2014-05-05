@@ -33,16 +33,30 @@ export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
 # Backs up all the important files in my home directory
 backuphome() {
+  if [[ $# -eq 0 ]]; then
+    local DIR_BACKUP="/home/mass/Dropbox/backups/ubuntu"
+  else
+    local DIR_BACKUP=$(readlink -m $1)
+  fi
+
+  local DIR_TIME="$(date +%F)"
+  if [ -d ~/$DIR_TIME ]; then
+    echo "Error. Directory ~/$DIR_TIME already exists."
+    kill -INT $$
+  fi
+
+  local DIR_OLD=$(pwd)
   T="$(date +%s)"
   echo "Starting backup of files\n\n"
-  cd /home/mass
-  mkdir $(date +%F)
-  cd ./$(date +%F)
-  cp -rv ~/development ~/.ssh ~/.boto ~/.nvidia-settings-rc /etc/udev/rules.d/51-android.rules ./
+  cd ~
+  mkdir $DIR_TIME
+  cd ./$DIR_TIME
+  cp -rv ~/development ~/.ssh ~/.boto ~/.nvidia-settings-rc ~/.config/redshift.conf ./
   cd ../
-  tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$(date +%F)/
-  rm -rf ./$(date +%F)
-  mv "Compressed-Archive-"$(date +%F).tar.gz /home/mass/Dropbox/backups/ubuntu
+  tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$DIR_TIME/
+  rm -rf ./$DIR_TIME
+  mv "Compressed-Archive-"$(date +%F).tar.gz $DIR_BACKUP
+  cd $DIR_OLD
   T="$(($(date +%s)-T))"
   echo "\n\nBackup completed, time elapsed: ${T}"
 }
