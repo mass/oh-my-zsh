@@ -78,6 +78,19 @@ ssl_decrypt() {
   openssl aes-256-cbc -a -d -in $1 -out $2
 }
 
+# Randomness functions
+flipcoin() {
+  [[ $((RANDOM % 2)) == 0 ]] && echo TAILS || echo HEADS
+}
+rolldie() {
+  if [[ -n "$1" ]]; then
+    SIDES="$1"
+  else
+    SIDES=6
+  fi
+  echo $((RANDOM % $SIDES))
+}
+
 # Fun bit of information
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 30 | sort -rn"
 
