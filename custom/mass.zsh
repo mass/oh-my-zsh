@@ -2,7 +2,7 @@
 # Custom ZSH Configuration #
 #                          #
 # Author: Andrew Mass      #
-# Date:   2014-04-24       #
+# Date:   2014-05-27       #
 ############################
 
 # General Aliases
@@ -51,7 +51,7 @@ backuphome() {
   cd ~
   mkdir $DIR_TIME
   cd ./$DIR_TIME
-  cp -rv ~/development ~/.ssh ~/.boto ~/.nvidia-settings-rc ~/.config/redshift.conf ./
+  cp -rv ~/development ~/Downloads ~/.ssh ~/.boto ~/.nvidia-settings-rc ./
   cd ../
   tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$DIR_TIME/
   rm -rf ./$DIR_TIME
