@@ -2,7 +2,7 @@
 # Custom ZSH Configuration #
 #                          #
 # Author: Andrew Mass      #
-# Date:   2014-05-27       #
+# Date:   2014-06-01       #
 ############################
 
 # General Aliases
@@ -20,15 +20,13 @@ alias mass-web="cd /home/mass/development/web/mass-web"
 alias spim="QtSpim"
 alias spimbot="QtSpimbot"
 alias monad="../monad/monad --provided"
-alias 225="cd /home/mass/development/db/uiuc/225"
-alias 398="cd /home/mass/development/db/uiuc/398/amass2"
 
 # Pegasus Aliases
-alias pegasus-db="mysql -u root -ppass pegasus"
+alias pegasus-db="mysql -u root pegasus"
 alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
 
 # Development Settings
-export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
+## export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
 # Backs up all the important files in my home directory
@@ -65,6 +63,6 @@ backuphome() {
 refresh-pegasus-db() {
   local OLD_DIR=$(pwd)
   cd ~/development/web/pegasus/tools
-  cat create_tables.sql create_testdata.sql | mysql -u root -ppass
+  cat create_tables.sql create_testdata.sql | mysql -u root
   cd $OLD_DIR
 }
