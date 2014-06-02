@@ -24,7 +24,7 @@ alias monad="../monad/monad --provided"
 # More Git Aliases
 alias gpl="git pull"
 alias grb="git pull --rebase"
-alias gpu="git push"
+alias gpu="git push origin"
 alias glg="git log"
 alias gpom="git push origin master"
 
