@@ -2,7 +2,7 @@
 # Custom ZSH Configuration #
 #                          #
 # Author: Andrew Mass      #
-# Date:   2014-06-01       #
+# Date:   2014-06-02       #
 ############################
 
 # General Aliases
@@ -20,6 +20,12 @@ alias mass-web="cd /home/mass/development/web/mass-web"
 alias spim="QtSpim"
 alias spimbot="QtSpimbot"
 alias monad="../monad/monad --provided"
+
+# More Git Aliases
+alias gpl="git pull"
+alias grb="git pull --rebase"
+alias gpu="git push"
+alias gpom="git push origin master"
 
 # Pegasus Aliases
 alias pegasus-db="mysql -u root pegasus"
