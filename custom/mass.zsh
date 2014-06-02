@@ -25,6 +25,7 @@ alias monad="../monad/monad --provided"
 alias gpl="git pull"
 alias grb="git pull --rebase"
 alias gpu="git push"
+alias glg="git log"
 alias gpom="git push origin master"
 
 # Pegasus Aliases
