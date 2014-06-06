@@ -70,6 +70,6 @@ backuphome() {
 refresh-pegasus-db() {
   local OLD_DIR=$(pwd)
   cd ~/development/web/pegasus/tools
-  cat create_tables.sql create_testdata.sql | mysql -u root
+  cat create_tables.sql create_testdata.sql | mysql -u root pegasus
   cd $OLD_DIR
 }
