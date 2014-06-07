@@ -37,6 +37,18 @@ alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
 ## export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
+# Prints a very pretty message
+# Run 'yes $(prettyprint)' for a good time
+prettyprint() {
+  if [[ $# -eq 0 ]]; then
+    local MSG="Unix is Pretty"
+  else
+    local MSG=$1
+  fi
+
+  toilet -f mono12 --gay $MSG
+}
+
 # Backs up all the important files in my home directory
 backuphome() {
   if [[ $# -eq 0 ]]; then

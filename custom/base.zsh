@@ -1,9 +1,14 @@
 # Shell options
 setopt AUTO_CD
-setopt CORRECT
+setopt CHASE_DOTS
+setopt CHASE_LINKS
+setopt COMPLETE_ALIASES
 setopt EXTENDED_GLOB
-setopt SHORT_LOOPS
 setopt HIST_FIND_NO_DUPS
+setopt SHORT_LOOPS
+unsetopt BEEP
+unsetopt HIST_BEEP
+unsetopt LIST_BEEP
 
 # Load more commands
 autoload -U zmv
@@ -93,6 +98,23 @@ rolldie() {
     SIDES=6
   fi
   echo $((RANDOM % $SIDES))
+}
+
+# Travels up N directories
+up() {
+  if [[ $# -eq 0 ]]; then
+    local NUM=1
+  else
+    local NUM=$1
+  fi
+
+  local DIR=$PWD
+
+  for ((i=0; i<NUM; i++)) do
+    DIR=$DIR/..
+  done
+
+  cd $DIR
 }
 
 # Fun bit of information
