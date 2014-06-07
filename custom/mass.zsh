@@ -2,7 +2,7 @@
 # Custom ZSH Configuration #
 #                          #
 # Author: Andrew Mass      #
-# Date:   2014-06-02       #
+# Date:   2014-06-06       #
 ############################
 
 # General Aliases
@@ -11,6 +11,7 @@ alias cpuinfo="sudo i7z_64bit"
 alias sensors="watch -d -n 1 sensors"
 alias svnup="svn up"
 alias svndf="svn diff | less"
+alias zshconfig="vim ~/.dotfiles/zsh/custom/mass.zsh"
 
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"

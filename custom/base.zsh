@@ -3,13 +3,17 @@ setopt AUTO_CD
 setopt CORRECT
 setopt EXTENDED_GLOB
 setopt SHORT_LOOPS
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 
 # Load more commands
 autoload -U zmv
 autoload -U zargs
+
+# Color variables
+GREEN="$(tput setaf 2)"
+RED="$(tput setaf 1)"
+BLUE="$(tput setaf 6)"
+RESET="$(tput sgr0)"
 
 ## Completions
 autoload -U compinit
@@ -35,7 +39,7 @@ alias l="ls"
 # Configuration aliases
 alias zshrc="vim ~/.zshrc"
 alias bashrc="vim ~/.bashrc"
-alias reload="source ~/.zshrc"
+alias shload="source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 
 # Git aliases
@@ -129,24 +133,36 @@ pg_staging_log() {
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 
 # Manual Package Update and Cleaning
-pkupdate() {
-  sudo echo "Arguments: $@"
+_pkupdate() {
+  set -e
+  sudo echo ""
+
   Time="$(date +%s)"
-  echo -e "Starting Package Update\n"
-  echo -e "\nUpdating Repositories\n"
+  echo -e "${GREEN}Starting Package Update${RESET}"
+  echo -e "${GREEN}=======================${RESET}"
+
+  if [[ $# -gt 0 ]]; then
+    echo -e "${RED}Arguments: $@${RESET}"
+  fi
+
+  echo -e "${GREEN}\nUpdating Repositories${RESET}"
   sudo apt-get $@ update
-  echo -e "\nUpdating Packages\n"
+  echo -e "${GREEN}\nUpdating Packages${RESET}"
   sudo apt-get $@ upgrade
-  echo -e "\nUpdating Distribution Packages\n"
+  echo -e "${GREEN}\nUpdating Distribution Packages${RESET}"
   sudo apt-get $@ dist-upgrade
-  echo -e "\nRemoving Unnecessary Packages\n"
+  echo -e "${GREEN}\nChecking and Repairing Dependencies${RESET}"
+  sudo apt-get $@ check
+  echo -e "${GREEN}\nRemoving Unnecessary Packages${RESET}"
   sudo apt-get $@ autoremove --purge
-  echo -e "\nAutocleaning Package Download Files\n"
+  echo -e "${GREEN}\nCleaning Package Download Files${RESET}"
   sudo apt-get $@ autoclean
-  echo -e "\nCleaning Package Download Files\n"
   sudo apt-get $@ clean
   Time="$(($(date +%s) - Time))"
-  echo -e "\nPackage Update Complete. Time Elapsed: ${Time}s"
+  echo -e "${GREEN}\nPackage Update Complete. Time Elapsed: ${RED}${Time}s${RESET}"
+}
+pkupdate() {
+  while read line; do echo $line; done < <(_pkupdate 2>&1)
 }
 
 # Pull every git directory in the pwd.
