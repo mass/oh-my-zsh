@@ -1,11 +1,10 @@
 # Shell options
 setopt AUTO_CD
-setopt CHASE_DOTS
 setopt CHASE_LINKS
-setopt COMPLETE_ALIASES
 setopt EXTENDED_GLOB
 setopt HIST_FIND_NO_DUPS
 setopt SHORT_LOOPS
+unsetopt COMPLETE_ALIASES
 unsetopt BEEP
 unsetopt HIST_BEEP
 unsetopt LIST_BEEP
