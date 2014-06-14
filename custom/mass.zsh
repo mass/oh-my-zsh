@@ -12,6 +12,7 @@ alias sensors="watch -d -n 1 sensors"
 alias svnup="svn up"
 alias svndf="svn diff | less"
 alias zshconfig="vim ~/.dotfiles/zsh/custom/mass.zsh"
+alias zshtheme="vim ~/.dotfiles/zsh/custom/mass.zsh-theme"
 
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"
