@@ -66,6 +66,7 @@ alias ip="ifconfig | grep 'inet '"
 alias copy="xclip -selection clipboard"
 alias v="vim"
 alias m="man"
+alias mvn-updates="mvn versions:display-dependency-updates"
 
 # Linux specific
 if [[ $(uname) = 'Linux' ]]; then
