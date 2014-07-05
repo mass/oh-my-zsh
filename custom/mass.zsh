@@ -2,7 +2,7 @@
 # Custom ZSH Configuration #
 #                          #
 # Author: Andrew Mass      #
-# Date:   2014-06-06       #
+# Date:   2014-07-05       #
 ############################
 
 # General Aliases
@@ -35,7 +35,7 @@ alias pegasus-db="mysql -u root pegasus"
 alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
 
 # Development Settings
-## export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
+export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
 # Prints a very pretty message

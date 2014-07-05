@@ -66,7 +66,8 @@ alias ip="ifconfig | grep 'inet '"
 alias copy="xclip -selection clipboard"
 alias v="vim"
 alias m="man"
-alias mvn-updates="mvn versions:display-dependency-updates"
+alias mvn="mvn-color"
+alias mvn-updates="mvn-color versions:display-dependency-updates"
 
 # Linux specific
 if [[ $(uname) = 'Linux' ]]; then
@@ -155,8 +156,7 @@ pg_staging_log() {
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 
 # Manual Package Update and Cleaning
-_pkupdate() {
-  set -e
+pkupdate() {
   sudo echo ""
 
   Time="$(date +%s)"
@@ -182,9 +182,6 @@ _pkupdate() {
   sudo apt-get $@ clean
   Time="$(($(date +%s) - Time))"
   echo -e "${GREEN}\nPackage Update Complete. Time Elapsed: ${RED}${Time}s${RESET}"
-}
-pkupdate() {
-  while read line; do echo $line; done < <(_pkupdate 2>&1)
 }
 
 # Pull every git directory in the pwd.
