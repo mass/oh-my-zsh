@@ -32,7 +32,7 @@ alias gpom="git push origin master"
 
 # Pegasus Aliases
 alias pegasus-db="mysql -u root pegasus"
-alias pgssh="ssh -i ~/.ssh/pegasus-prod.pem -l ubuntu"
+alias pgssh="ssh-add ~/.ssh/pegasus-prod.pem;ssh"
 
 # Development Settings
 export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
@@ -70,7 +70,7 @@ backuphome() {
   cd ~
   mkdir $DIR_TIME
   cd ./$DIR_TIME
-  cp -rv ~/development ~/Downloads ~/.ssh ~/.boto ~/.nvidia-settings-rc ./
+  cp -rv ~/development ~/Downloads ~/.ssh ~/.nvidia-settings-rc ./
   cd ../
   tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$DIR_TIME/
   rm -rf ./$DIR_TIME

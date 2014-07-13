@@ -58,6 +58,10 @@ alias gco="git checkout"
 alias gst="git status -sb"
 alias gd="git diff"
 alias gwc="git whatchanged -p --abbrev-commit --pretty=medium"
+groot() {
+  local groot_dir="$(git rev-parse --show-toplevel)"
+  [[ -n ${groot_dir} ]] && cd groot_dir > /dev/null
+}
 
 # Miscellaneous aliases
 alias more="less"
