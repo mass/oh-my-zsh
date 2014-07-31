@@ -2,7 +2,7 @@
 # Custom ZSH Configuration #
 #                          #
 # Author: Andrew Mass      #
-# Date:   2014-07-05       #
+# Date:   2014-07-30       #
 ############################
 
 # General Aliases
@@ -70,7 +70,7 @@ backuphome() {
   cd ~
   mkdir $DIR_TIME
   cd ./$DIR_TIME
-  cp -rv ~/development ~/Downloads ~/.ssh ~/.nvidia-settings-rc ./
+  cp -rv ~/development ~/Downloads ~/.ssh ~/.nvidia-settings-rc .unity.profile ./
   cd ../
   tar cvzf "Compressed-Archive-"$(date +%F).tar.gz ./$DIR_TIME/
   rm -rf ./$DIR_TIME
