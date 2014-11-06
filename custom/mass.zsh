@@ -17,6 +17,7 @@ alias zshtheme="vim ~/.dotfiles/zsh/custom/mass.zsh-theme"
 # Directory Aliases
 alias pegasus="cd /home/mass/development/web/pegasus"
 alias mass-web="cd /home/mass/development/web/mass-web"
+alias uiuc="cd /home/mass/Dropbox/dev/uiuc/"
 
 # School Aliases
 alias spim="QtSpim"
