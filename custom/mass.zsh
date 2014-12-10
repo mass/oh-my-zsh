@@ -39,6 +39,8 @@ alias pgssh="ssh-add ~/.ssh/pegasus-prod.pem;ssh"
 export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 
+export TERM=xterm-256color
+
 # Prints a very pretty message
 # Run 'yes $(prettyprint)' for a good time
 prettyprint() {
