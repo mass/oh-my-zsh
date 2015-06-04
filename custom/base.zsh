@@ -3,6 +3,8 @@ setopt AUTO_CD
 setopt CHASE_LINKS
 setopt EXTENDED_GLOB
 setopt HIST_FIND_NO_DUPS
+setopt NO_CHECK_JOBS
+setopt NO_HUP
 setopt SHORT_LOOPS
 unsetopt COMPLETE_ALIASES
 unsetopt BEEP
