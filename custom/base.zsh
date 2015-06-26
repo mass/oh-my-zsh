@@ -36,7 +36,7 @@ bindkey '^K' kill-line
 # ls aliases
 alias sl="ls"
 alias la="ls -A"
-alias ll="ls -l"
+alias ll="ls -lh"
 alias lla="ll -A"
 alias l1="ls -1"
 alias l1a="l1 -A"
