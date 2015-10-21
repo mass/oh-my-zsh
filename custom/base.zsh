@@ -163,6 +163,7 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 
 # Manual Package Update and Cleaning
 pkupdate() {
+  # Run everything as root
   sudo echo ""
 
   Time="$(date +%s)"
@@ -170,22 +171,55 @@ pkupdate() {
   echo -e "${GREEN}=======================${RESET}"
 
   if [[ $# -gt 0 ]]; then
-    echo -e "${RED}Arguments: $@${RESET}"
+    echo -e "${BLUE}Arguments: $@${RESET}"
   fi
 
-  echo -e "${GREEN}\nUpdating Repositories${RESET}"
-  sudo apt-get $@ update
-  echo -e "${GREEN}\nUpdating Packages${RESET}"
-  sudo apt-get $@ upgrade
-  echo -e "${GREEN}\nUpdating Distribution Packages${RESET}"
-  sudo apt-get $@ dist-upgrade
-  echo -e "${GREEN}\nChecking and Repairing Dependencies${RESET}"
-  sudo apt-get $@ check
-  echo -e "${GREEN}\nRemoving Unnecessary Packages${RESET}"
-  sudo apt-get $@ autoremove --purge
-  echo -e "${GREEN}\nCleaning Package Download Files${RESET}"
-  sudo apt-get $@ autoclean
-  sudo apt-get $@ clean
+  # Use apt-get if present
+  local APT_GET_VERSION=$(apt-get --version 2> /dev/null)
+  if [[ "${APT_GET_VERSION}" ]]; then
+      echo -e "${GREEN}\nUsing apt-get!${RESET}"
+
+      echo -e "${GREEN}\nUpdating Repositories${RESET}"
+      sudo apt-get $@ update
+
+      echo -e "${GREEN}\nUpdating Packages${RESET}"
+      sudo apt-get $@ upgrade
+
+      echo -e "${GREEN}\nUpdating Distribution Packages${RESET}"
+      sudo apt-get $@ dist-upgrade
+
+      echo -e "${GREEN}\nChecking and Repairing Dependencies${RESET}"
+      sudo apt-get $@ check
+
+      echo -e "${GREEN}\nRemoving Unnecessary Packages${RESET}"
+      sudo apt-get $@ autoremove --purge
+
+      echo -e "${GREEN}\nCleaning Package Download Files${RESET}"
+      sudo apt-get $@ autoclean
+      sudo apt-get $@ clean
+  fi
+
+  # Use pacman if present
+  local PACMAN_VERSION=$(pacman --version 2> /dev/null)
+  if [[ "${PACMAN_VERSION}" ]]; then
+      echo -e "${GREEN}\nUsing pacman!${RESET}"
+
+      echo -e "${GREEN}\nUpdating Package Databases${RESET}"
+      sudo pacman -Syy $@
+
+      echo -e "${GREEN}\nUpdating Packages${RESET}"
+      sudo pacman -Suu $@
+
+      echo -e "${GREEN}\nRemove Unnecessary Packages${RESET}"
+      local UP=$(pacman -Qtdq)
+      if [[ "${UP}" ]]; then
+          sudo pacman -Rns ${UP}
+      fi
+
+      echo -e "${GREEN}\nCleaning Caches${RESET}"
+      sudo pacman -Scc $@ --noconfirm
+  fi
+
   Time="$(($(date +%s) - Time))"
   echo -e "${GREEN}\nPackage Update Complete. Time Elapsed: ${RED}${Time}s${RESET}"
 }
