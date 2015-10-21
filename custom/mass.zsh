@@ -23,6 +23,12 @@ alias uiuc="cd /home/mass/Dropbox/dev/uiuc/"
 alias spim="QtSpim"
 alias spimbot="QtSpimbot"
 alias monad="../monad/monad --provided"
+alias 391-devel="qemu-system-i386 -hda /home/mass/development/workdir-391/vm/devel.qcow \
+    -m 1024 -name devel -net nic -net user,smb=/home/mass/development/workdir-391"
+alias 391-nodebug="qemu-system-i386 -m 512 -name test \
+    -hda /home/mass/development/workdir-391/ece391mp/student-distrib/mp3.img"
+alias 391-debug="qemu-system-i386 -m 512 -name test -gdb tcp:127.0.0.1:1234 -S \
+    -hda /home/mass/development/workdir-391/ece391mp/student-distrib/mp3.img"
 
 # More Git Aliases
 alias gpl="git pull"
