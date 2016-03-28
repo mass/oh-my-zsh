@@ -44,6 +44,7 @@ alias pgssh="ssh-add ~/.ssh/pegasus-prod.pem;ssh"
 # Development Settings
 export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/bin/java"
 
 export TERM=xterm-256color
 

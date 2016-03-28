@@ -220,6 +220,12 @@ pkupdate() {
       sudo pacman -Scc $@ --noconfirm
   fi
 
+  local YAOURT_VERSION=$(yaourt --version 2> /dev/null)
+  if [[ "${YAOURT_VERSION}" ]]; then
+    echo -e "${GREEN}\nUsing yaourt!${RESET}"
+    yaourt -Syu --aur
+  fi
+
   Time="$(($(date +%s) - Time))"
   echo -e "${GREEN}\nPackage Update Complete. Time Elapsed: ${RED}${Time}s${RESET}"
 }
