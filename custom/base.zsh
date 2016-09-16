@@ -16,9 +16,10 @@ autoload -U zmv
 autoload -U zargs
 
 # Color variables
-GREEN="$(tput setaf 2)"
-RED="$(tput setaf 1)"
-BLUE="$(tput setaf 6)"
+BOLD="$(tput bold)"
+GREEN=$BOLD"$(tput setaf 2)"
+RED=$BOLD"$(tput setaf 1)"
+BLUE=$BOLD"$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 ## Completions
@@ -178,6 +179,7 @@ pkupdate() {
   local APT_GET_VERSION=$(apt-get --version 2> /dev/null)
   if [[ "${APT_GET_VERSION}" ]]; then
       echo -e "${GREEN}\nUsing apt-get!${RESET}"
+      echo -e "${GREEN}--------------${RESET}"
 
       echo -e "${GREEN}\nUpdating Repositories${RESET}"
       sudo apt-get $@ update
@@ -203,26 +205,39 @@ pkupdate() {
   local PACMAN_VERSION=$(pacman --version 2> /dev/null)
   if [[ "${PACMAN_VERSION}" ]]; then
       echo -e "${GREEN}\nUsing pacman!${RESET}"
+      echo -e "${GREEN}-------------${RESET}"
 
       echo -e "${GREEN}\nUpdating Package Databases${RESET}"
       sudo pacman -Syy $@
 
       echo -e "${GREEN}\nUpdating Packages${RESET}"
-      sudo pacman -Suu $@
+      sudo pacman -Suu --needed $@
 
       echo -e "${GREEN}\nRemove Unnecessary Packages${RESET}"
       local UP=$(pacman -Qtdq)
       if [[ "${UP}" ]]; then
-          sudo pacman -Rns ${UP}
+          pacman -Qtdq | sudo pacman -Rnssu -
       fi
 
       echo -e "${GREEN}\nCleaning Caches${RESET}"
-      sudo pacman -Scc $@ --noconfirm
+      sudo pacman -Scc $@ <<< Y <<< Y
+
+      echo -e "${GREEN}\nCheck Database Consistency${RESET}"
+      pacman -Dk
+      pacman -Dkk
+
+      echo -e "${GREEN}\nCheck Package Integrity${RESET}"
+      sudo pacman -Qk --color=always | grep "warning: "
+
+      echo -e "${GREEN}\nOptional Commands:${RESET}"
+      echo -e "sudo pacman -Qkk      : More detailed package integrity checks"
+      echo -e "sudo pacman-optimize  : Defragment package database files"
   fi
 
   local YAOURT_VERSION=$(yaourt --version 2> /dev/null)
   if [[ "${YAOURT_VERSION}" ]]; then
     echo -e "${GREEN}\nUsing yaourt!${RESET}"
+    echo -e "${GREEN}-------------${RESET}"
     yaourt -Syu --aur
   fi
 
