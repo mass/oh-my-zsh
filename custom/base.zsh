@@ -270,6 +270,15 @@ pulls() {
   )
 }
 
+# Remind me of common maitenance commands
+remind() {
+    echo -e "pkupdate            : Perform package maitenance"
+    echo -e "systemctl --failed  : Check systemd failed units"
+    echo -e "journalctl -xb -p 3 : Check systemd logs"
+    echo -e "pacman -Qte         : Review manually installed, unrequired packages"
+    echo -e "pacgraph            : Generate visual representation of packages"
+}
+
 # Define Color Variables for later usage
 c_red=$(tput setaf 1)
 c_green=$(tput setaf 2)
