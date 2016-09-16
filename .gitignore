@@ -3,4 +3,12 @@ log/.zsh_history
 projects.zsh
 *.swp
 !custom/example.zshcache
+
+# custom files
+custom/
+!custom/plugins/example
+!custom/example.zsh
+
+# temp files directories
 cache/
+log/
