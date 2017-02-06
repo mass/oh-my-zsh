@@ -9,26 +9,9 @@
 alias diff="diff -s"
 alias cpuinfo="sudo i7z_64bit"
 alias sensors="watch -d -n 1 sensors"
-alias svnup="svn up"
-alias svndf="svn diff | less"
 alias zshconfig="vim ~/.dotfiles/zsh/custom/mass.zsh"
 alias zshtheme="vim ~/.dotfiles/zsh/custom/mass.zsh-theme"
-
-# Directory Aliases
-alias pegasus="cd /home/mass/development/web/pegasus"
-alias mass-web="cd /home/mass/development/web/mass-web"
-alias uiuc="cd /home/mass/Dropbox/dev/uiuc/"
-
-# School Aliases
-alias spim="QtSpim"
-alias spimbot="QtSpimbot"
-alias monad="../monad/monad --provided"
-alias 391-devel="qemu-system-i386 -hda /home/mass/development/workdir-391/vm/devel.qcow \
-    -m 1024 -name devel -net nic -net user,smb=/home/mass/development/workdir-391"
-alias 391-nodebug="qemu-system-i386 -m 512 -name test \
-    -hda /home/mass/development/workdir-391/ece391mp/student-distrib/mp3.img"
-alias 391-debug="qemu-system-i386 -m 512 -name test -gdb tcp:127.0.0.1:1234 -S \
-    -hda /home/mass/development/workdir-391/ece391mp/student-distrib/mp3.img"
+alias j="fasd_cd -d"
 
 # More Git Aliases
 alias gpl="git pull"
@@ -37,12 +20,7 @@ alias gpu="git push origin"
 alias glg="git log"
 alias gpom="git push origin master"
 
-# Pegasus Aliases
-alias pegasus-db="mysql -u root pegasus"
-alias pgssh="ssh-add ~/.ssh/pegasus-prod.pem;ssh"
-
 # Development Settings
-export PATH=${PATH}:~/Dropbox/dev/android/android-sdk-linux/tools:~/Dropbox/dev/android/android-sdk-linux/platform-tools
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/bin/java"
 
@@ -88,12 +66,4 @@ backuphome() {
   cd $DIR_OLD
   T="$(($(date +%s)-T))"
   echo "\n\nBackup completed, time elapsed: ${T}"
-}
-
-# Clean and refresh the local pegasus database
-refresh-pegasus-db() {
-  local OLD_DIR=$(pwd)
-  cd ~/development/web/pegasus/tools
-  cat create_tables.sql create_testdata.sql | mysql -u root pegasus
-  cd $OLD_DIR
 }

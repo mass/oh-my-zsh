@@ -11,10 +11,6 @@ unsetopt BEEP
 unsetopt HIST_BEEP
 unsetopt LIST_BEEP
 
-# Load more commands
-autoload -U zmv
-autoload -U zargs
-
 # Color variables
 BOLD="$(tput bold)"
 GREEN=$BOLD"$(tput setaf 2)"
@@ -32,7 +28,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
 bindkey '^R' history-incremental-search-backward
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
-bindkey '^K' kill-line
 
 # ls aliases
 alias sl="ls"
@@ -46,7 +41,7 @@ alias l="ls"
 # Configuration aliases
 alias zshrc="vim ~/.zshrc"
 alias bashrc="vim ~/.bashrc"
-alias shload="source ~/.zshrc"
+alias shload="exec zsh"
 alias vimrc="vim ~/.vimrc"
 
 # Git aliases
@@ -71,10 +66,7 @@ alias more="less"
 alias dirstat="du -d 1 -h | sort -hr | head -n 11"
 alias ip="ifconfig | grep 'inet '"
 alias copy="xclip -selection clipboard"
-alias v="vim"
 alias m="man"
-alias mvn="mvn-color"
-alias mvn-updates="mvn-color versions:display-dependency-updates"
 
 # Linux specific
 if [[ $(uname) = 'Linux' ]]; then
@@ -138,12 +130,6 @@ title() {
 }
 title "zsh"
 
-# Set up simple python web server
-# pyserver port sets up the server on port, with default port 8000.
-pyserver() {
-  python -m SimpleHTTPServer $1
-}
-
 # Given an input n, gives a random string of length n.
 # If no input supplied, generates a 64 character string.
 randgen() {
@@ -152,11 +138,6 @@ randgen() {
   else
     openssl rand -hex $1 | cut -c1-$1
   fi
-}
-
-# Tomcat logs
-pg_staging_log() {
-  ssh pg-dev "tail -n 500 -f /var/log/tomcat7/catalina.out"
 }
 
 # Speedtest alias
@@ -297,15 +278,13 @@ export HISTFILESIZE=100000
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe.sh ] && export LESSOPEN="|/usr/bin/lesspipe.sh %s"
 
-# Alias definitions.
-alias killz='killall -9 '
+# General aliases
 alias hidden='ls -a | grep "^\..*"'
-alias rm='rm -i'
 alias shell='ps -p $$ -o comm='
-alias sml='rlwrap sml'
-alias math='rlwrap MathKernel'
-alias coin='rlwrap coin'
 alias a='alias'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
 # C Aliases
 alias cc='gcc -Wall -W -ansi -pedantic -O2 '
@@ -318,10 +297,3 @@ else
   alias ls='ls --color=auto'
 fi
 alias grep='grep --color=auto'
-
-# Useful Functions
-qdict(){ grep $1 /usr/share/dict/words; }
-
-# Turn off the ability for other people to message your terminal using wall or write
-mesg n
-
