@@ -46,6 +46,7 @@ alias vimrc="vim ~/.vimrc"
 
 # Git aliases
 alias tigs="tig status"
+alias tigy="tig stash"
 alias amend="git commit --amend"
 alias commit="git commit"
 alias pull="git pull"

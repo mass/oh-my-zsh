@@ -7,11 +7,12 @@
 
 # General Aliases
 alias diff="diff -s"
-alias cpuinfo="sudo i7z_64bit"
 alias sensors="watch -d -n 1 sensors"
 alias zshconfig="vim ~/.dotfiles/zsh/custom/mass.zsh"
 alias zshtheme="vim ~/.dotfiles/zsh/custom/mass.zsh-theme"
 alias j="fasd_cd -d"
+alias tmuxa="tmux attach-session -t"
+alias tmuxl="tmux list-sessions"
 
 # More Git Aliases
 alias gpl="git pull"
@@ -23,8 +24,6 @@ alias gpom="git push origin master"
 # Development Settings
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/bin/java"
-
-export TERM=xterm-256color
 
 # Prints a very pretty message
 # Run 'yes $(prettyprint)' for a good time
