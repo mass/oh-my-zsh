@@ -1,9 +1,13 @@
 # Color Variables
-Y="%b%F{yellow}"
-R="%b%F{red}"
-G="%b%F{green}"
-B="%b%F{blue}"
-C="%b%F{reset}"
+R="%s%b%u%F{red}"
+G="%s%b%u%F{green}"
+Y="%s%b%u%F{yellow}"
+B="%s%b%u%F{blue}"
+M="%s%b%u%F{magenta}"
+N="%s%b%u%F{cyan}"
+W="%s%b%u%F{white}"
+C="%s%b%u%F{reset}"
+SO="%S%B%u%F{cyan}"
 
 # Left Side Prompt
 PS1="${Y}["\
@@ -12,7 +16,7 @@ PS1="${Y}["\
 "%(1j,${Y} [${B}☢%j${Y}],)"\
 "${Y} [${G}%~${Y}]"\
 "${R}"'$(git_prompt_string)'\
-"${Y} %(!,#,|»)${R} "
+"${Y} %(!,#,|») "
 
 # Right Side Prompt
 RPS1="%(1?, ${Y}[${R}%?${Y}] ,)"\
