@@ -72,6 +72,7 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 alias shell='ps -p $$ -o comm='
 alias valgrind-leak='valgrind --leak-check=full --show-reachable=yes'
 alias sensors="watch -d -n 1 sensors"
+alias redreset="redshift -x"
 
 # ls aliases
 alias sl="ls"
@@ -273,4 +274,3 @@ remind() {
     echo -e "pacman -Qte         : Review manually installed, unrequired packages"
     echo -e "pacgraph            : Generate visual representation of packages"
 }
-
