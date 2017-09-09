@@ -12,6 +12,8 @@ plugins=()
 plugins+=(fasd)
 plugins+=(git-prompt)
 plugins+=(zsh-syntax-highlighting)
+plugins+=(zsh-autosuggestions)
+plugins+=(zsh-completions)
 
 # Activate
 source $ZSH/oh-my-zsh.sh
