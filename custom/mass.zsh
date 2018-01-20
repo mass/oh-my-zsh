@@ -189,7 +189,6 @@ pkupdate() {
 
       echo -e "${GREEN}\nCheck Database Consistency${RESET}"
       pacman -Dk
-      pacman -Dkk
 
       echo -e "${GREEN}\nCheck Package Integrity${RESET}"
       sudo pacman -Qk --color=always | grep "warning: "
