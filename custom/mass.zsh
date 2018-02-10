@@ -59,6 +59,7 @@ alias open="xdg-open"
 alias g="git"
 alias tigs="tig status"
 alias tigy="tig stash"
+alias ftail="tail -f -s 0.1 -n 1000"
 
 # Util Aliases
 alias copy="xclip -selection clipboard"
@@ -68,6 +69,7 @@ alias shell='ps -p $$ -o comm='
 alias valgrind-leak='valgrind --leak-check=full --show-reachable=yes'
 alias sensors="watch -d -n 0.5 sensors"
 alias redreset="redshift -x"
+alias mine-mon="tmuxinator start mine-mon"
 
 # ls aliases
 alias sl="ls"
@@ -88,7 +90,7 @@ alias shload="exec zsh"
 
 # Useful environment variables
 export EDITOR=vim
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+export PATH="${PATH}:`ruby -e 'puts Gem.user_dir'`/bin"
 
 # Randomness functions
 flipcoin() {
@@ -142,7 +144,7 @@ pkupdate() {
 
   # Use apt-get if present
   local APT_GET_VERSION=$(apt-get --version 2> /dev/null)
-  if [[ "${APT_GET_VERSION}" ]]; then
+  if [ "${APT_GET_VERSION}" ]; then
       echo -e "${GREEN}\nUsing apt-get!${RESET}"
       echo -e "${GREEN}--------------${RESET}"
 
@@ -168,7 +170,7 @@ pkupdate() {
 
   # Use pacman if present
   local PACMAN_VERSION=$(pacman --version 2> /dev/null)
-  if [[ "${PACMAN_VERSION}" ]]; then
+  if [ "${PACMAN_VERSION}" ]; then
       echo -e "${GREEN}\nUsing pacman!${RESET}"
       echo -e "${GREEN}-------------${RESET}"
 
@@ -180,7 +182,7 @@ pkupdate() {
 
       echo -e "${GREEN}\nRemove Unnecessary Packages${RESET}"
       local UP=$(pacman -Qtdq)
-      if [[ "${UP}" ]]; then
+      if [ "${UP}" ]; then
           pacman -Qtdq | sudo pacman -Rnssu -
       fi
 
@@ -199,7 +201,7 @@ pkupdate() {
   fi
 
   local YAOURT_VERSION=$(yaourt --version 2> /dev/null)
-  if [[ "${YAOURT_VERSION}" ]]; then
+  if [ "${YAOURT_VERSION}" ]; then
     echo -e "${GREEN}\nUsing yaourt!${RESET}"
     echo -e "${GREEN}-------------${RESET}"
     yaourt -Syu --aur
