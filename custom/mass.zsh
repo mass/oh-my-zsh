@@ -60,6 +60,7 @@ alias g="git"
 alias tigs="tig status"
 alias tigy="tig stash"
 alias ftail="tail -f -s 0.1 -n 1000"
+alias mconv="/drive/development/scripts/mconv.sh"
 
 # Util Aliases
 alias copy="xclip -selection clipboard"
@@ -69,7 +70,7 @@ alias shell='ps -p $$ -o comm='
 alias valgrind-leak='valgrind --leak-check=full --show-reachable=yes'
 alias sensors="watch -d -n 0.5 sensors"
 alias redreset="redshift -x"
-alias mine-mon="tmuxinator start mine-mon"
+alias sys-mon="tmuxinator start sys-mon"
 
 # ls aliases
 alias sl="ls"
@@ -183,7 +184,7 @@ pkupdate() {
       echo -e "${GREEN}\nRemove Unnecessary Packages${RESET}"
       local UP=$(pacman -Qtdq)
       if [ "${UP}" ]; then
-          pacman -Qtdq | sudo pacman -Rnssu -
+          sudo bash -c "pacman -Qtdq | pacman -Rnssu -"
       fi
 
       echo -e "${GREEN}\nCleaning Caches${RESET}"
